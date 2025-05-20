@@ -30,6 +30,7 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [os.environ.get('HOST')]
 
+AUTH_USER_MODEL = "django_internet_shop.CustomUser"
 
 # Application definition
 

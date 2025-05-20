@@ -3,7 +3,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.utils.dateparse import parse_date
 from django.contrib.auth.decorators import login_required
-from .models import Item
+from .models import Item, ShoppingCart
 
 @login_required
 def home(request):
@@ -19,11 +19,15 @@ def items(request):
 def items_card(request):
     return HttpResponse("<h1>Эта страница ещё не готова, она появится позже.</h1>")
 
-def items_cart(request):
-    return HttpResponse("<h1>Эта страница ещё не готова, она появится позже.</h1>")
+def shopping_cart(request):
+
+    cart = ShoppingCart.objects.all()
+
+    return render(request, "shopping_cart.html", {"cart":cart})
 
 def user(request):
     return HttpResponse("<h1>Эта страница ещё не готова, она появится позже.</h1>")
+
 
 def items_list(request):
 

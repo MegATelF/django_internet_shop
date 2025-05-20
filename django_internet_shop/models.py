@@ -1,6 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+
+class CustomUser(AbstractUser):
+    pass
 
 class Item(models.Model):
     title = models.CharField(_("Имя"), max_length=100)
@@ -24,10 +27,8 @@ class ItemCard(models.Model):
     pass
     
 class ShoppingCart(models.Model):
-    pass
+    user = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='User')
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='Item')
+    quantity = models.PositiveIntegerField(default=1)
     
-class CustomUser(User):
-    pass
 
-    def __str__(self):
-        return self.title
