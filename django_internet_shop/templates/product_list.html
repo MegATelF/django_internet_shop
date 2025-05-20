@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="product-page-container">
+        <div class="product-image-section">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        </div>
+        <div class="product-details-section">
+            <h1>{{ product.title }}</h1>
+            <p class="product-price">${{ product.price }}</p>
+            <p><strong>Author:</strong> {{ product.author }}</p>
+            <p><strong>Genre:</strong> {{ product.genre }}</p>
+            <p><strong>Pages:</strong> {{ product.pages }}</p>
+            <p><strong>Published:</strong> {{ product.publish_date }}</p>
+            <p class="product-description">{{ product.description }}</p>
+            <p><strong>In Stock:</strong> {{ product.count }}</p>
+            <button class="add-to-cart">Add to Cart</button>
+            <a href="{% url 'items_list' %}" class="back-to-list">Back to Items List</a>
+        </div>
+    </div>
+
+{% endblock %}
