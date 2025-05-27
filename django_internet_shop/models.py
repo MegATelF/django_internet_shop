@@ -3,7 +3,12 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 class CustomUser(AbstractUser):
-    pass
+    username = models.CharField(_("Имя"), max_length=100, unique=True)
+    email = models.EmailField(_("Эл. Почта"))
+    password = models.CharField(_("Пароль"), max_length=100)
+
+    def __str__(self):
+        return self.username
 
 class Item(models.Model):
     title = models.CharField(_("Имя"), max_length=100)
@@ -24,11 +29,12 @@ class Item(models.Model):
         verbose_name_plural = _("Книги")
 
 class User(models.Model):
-    name = models.CharField(_("Имя"), max_length=100)
+    username = models.CharField(_("Имя"), max_length=100)
+    email = models.EmailField(_("Эл. Почта"))
     password = models.CharField(_("Пароль"), max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.username
     
 class ShoppingCart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User')
