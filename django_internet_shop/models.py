@@ -23,11 +23,15 @@ class Item(models.Model):
         verbose_name = _("Книга")
         verbose_name_plural = _("Книги")
 
-class ItemCard(models.Model):
-    pass
+class User(models.Model):
+    name = models.CharField(_("Имя"), max_length=100)
+    password = models.CharField(_("Пароль"), max_length=100)
+
+    def __str__(self):
+        return self.name
     
 class ShoppingCart(models.Model):
-    user = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='User')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User')
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='Item')
     quantity = models.PositiveIntegerField(default=1)
     

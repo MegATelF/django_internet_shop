@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from .models import Item, ItemCard, ShoppingCart, CustomUser
+from .models import Item, User, ShoppingCart, CustomUser
 
 # Register your models here.
 
 
-admin.site.register(ItemCard)
+admin.site.register(User)
 admin.site.register(ShoppingCart)
 admin.site.register(CustomUser)
 
